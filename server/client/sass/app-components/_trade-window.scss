@@ -1,0 +1,320 @@
+@import "../variables";
+
+$window-header-height: 54px;
+$trade-item-width: percentage(16.6666666667/100);
+
+$inventory-bg-color: #1b1a1a;
+$inventory-item-bg-color: #292929;
+$inventory-item-hover-bg-color: #454545;
+$inventory-item-border-color: #d2d2d2;
+$window-border-radius: 3px;
+
+$inventory-window-height: 420px;
+$inventory-small-window-height: 200px;
+
+.trade-window {
+  margin-bottom: $window-header-height;
+}
+.trade-window--small {
+  & .trade-items {
+    height: $inventory-small-window-height;
+  }
+}
+
+.trade-window-header {
+  padding: 0 10px;
+  height: $window-header-height;
+  background: $bg-primary;
+  color: $link-color-primary;
+  text-transform: uppercase; //todo
+  border-radius: $window-border-radius $window-border-radius 0 0;
+  & * { // todo
+    line-height: $window-header-height;
+    height: $window-header-height;
+  }
+}
+.header-item--left {
+  float: left;
+}
+.header-item--right {
+  float: right;
+}
+
+.trade-items,
+.market-rates_data {
+  height: $inventory-window-height;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.trade-items {
+  position: relative;
+}
+
+.trade-items-wrapper {
+  position: relative;
+}
+
+.inventory-loader-indicator,
+.inventory-auth-screen {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  text-align: center;
+
+  background: rgba(0,0,0,.8);
+
+  line-height: $inventory-window-height;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.steam-auth-required-text {
+  color: $text-color-bright;
+  font-size: 2em;
+  font-weight: bold;
+}
+.sign-in-button {
+  display: inline-block;
+}
+
+$inventory-items-gap: 2px;
+
+.trade-items {
+  padding: $inventory-items-gap;
+  background: $inventory-bg-color;
+  border-radius: 0 0 $window-border-radius $window-border-radius;
+  border: 2px solid #444;
+  border-top: none;
+}
+
+.trade-item {
+  position: relative;
+  float: left;
+  width: $trade-item-width;
+  padding-bottom: $trade-item-width;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}
+
+.trade-item-content {
+  position: absolute;
+  top: $inventory-items-gap;
+  right: $inventory-items-gap;
+  bottom: $inventory-items-gap;
+  left: $inventory-items-gap;
+  border: 1px solid $inventory-item-border-color;
+  background: $inventory-item-bg-color;
+  cursor: pointer;
+  color: $text-color-bright;
+  &:hover {
+    background-color: $inventory-item-hover-bg-color;
+  }
+}
+
+.trade-item-unavailable {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0, .5);
+}
+
+.trade-item-unavailable-text {
+  position: absolute;
+  color: #828282;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  bottom: 5px;
+  letter-spacing: .5px;
+  font-size: 10px;
+}
+
+.trade-item_count,
+.trade-item_class,
+.trade-item-picture,
+.trade-item-price {
+  position: absolute;
+}
+
+$trade-item-padding: percentage(2/100);
+
+.trade-item_count {
+  left: $trade-item-padding;
+  top: $trade-item-padding;
+}
+.trade-item_class {
+  display: block;
+  padding: 2px;
+  z-index: 100;
+  font-size: 12px;
+  font-weight: bold;
+  top: $trade-item-padding;
+  right: $trade-item-padding;
+
+  &.category {
+    right: 45%;
+  }
+}
+
+.trade-item-picture {
+  top: 11%;
+  right: 2%;
+  bottom: 0;
+  left: 3%;
+}
+
+.trade-item-img {
+  display: block;
+  width: 100%;
+}
+
+.trade-item-price {
+  bottom: $trade-item-padding;
+  text-align: center;
+  width: 100%;
+}
+
+.trade-button_container {
+  margin-top: 118px;
+  text-align: center;
+}
+
+$trade-button-disabled-bg: $bg-primary;
+$trade-button-bg: linear-gradient( to bottom, #a4d007 5%, #536904 95%);
+$trade-button-hover-bg: #99b807;
+
+.trade-button {
+  display: block;
+  cursor: pointer;
+  height: 63px;
+  line-height: 63px;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: $link-color-primary;
+  background: $trade-button-bg;
+  border-radius: 2px;
+
+  &:hover {
+    background: $trade-button-hover-bg;
+  }
+
+  &.disabled {
+    background: $trade-button-disabled-bg;
+    color: rgba(255, 255, 255, 0.17);
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+
+.market-rates_data {
+  padding: 20px 0;
+  background: $inventory-bg-color;
+  color: $text-color-muted;
+}
+
+.market-rates-title {
+  text-align: center;
+}
+.market-item-group {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.market-rates-info {
+  margin-top: 45px;
+  text-align: center;
+}
+.market-rates-info_button {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.item-sticker-list {
+  position: absolute;
+  width: 31%;
+  left: 3%;
+  top: 4px;
+  bottom: 19px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.item-sticker-element {
+  width: 80%;
+  height: auto;
+  padding: 0;
+  margin-bottom: 20%;
+}
+
+.item-sticker-img {
+  width: 100%;
+  opacity: 0.4;
+  height: auto;
+  display: block;
+}
+
+.inventory-button-container {
+}
+
+.inventory-button {
+  display: block;
+  cursor: pointer;
+  font-size: 90%;
+  padding: 0 7px;
+
+  &:hover {
+    background: rgba(31, 31, 31, 0.95);
+  }
+}
+
+.price-order-button {
+  position: relative;
+  padding-right: 13px;
+}
+
+.order-arrow {
+  position: absolute;
+  top: 0;
+  right: 3px;
+}
+
+.inventory-search {
+  margin-left: 12px;
+  width: 124px;
+}
+
+.inventory-search-input {
+  width: 100%;
+  margin-top: 4%;
+  height: 38px;
+  line-height: 54px;
+  background: rgba(41, 41, 41, 0.63);
+  border: 1px solid #292929;
+  border-radius: 2rem;
+  outline: none;
+  font-size: 16px;
+  color: #828282;
+  text-indent: 15%;
+}
+
+.filter-button {
+  &.active {
+    background: rgba(31, 31, 31, 0.95);
+  }
+}

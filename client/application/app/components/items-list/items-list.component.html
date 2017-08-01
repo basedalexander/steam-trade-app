@@ -1,0 +1,47 @@
+<div class="trade-items">
+    <div class="inventory-content">
+
+        <div *ngFor="let item of items; let i = index" class="trade-item" [class.hidden]="isHidden(item)">
+
+            <div class="trade-item-unavailable" *ngIf="item.unavailable" title="{{itemUnavailableText}}">
+                <span class="trade-item-unavailable-text">Unavailable</span>
+            </div>
+
+            <div *ngIf='!vsEnabled || ( (i >= vsData.preIndex) && (i < vsData.postIndex) )' class="trade-item-content"
+                 [ngStyle]="{'border-color': '#' + item?.name_color}"
+                 [class.hidden]="isHidden(item)"
+                 title="{{item?.market_hash_name}}"
+                 (click)="onItemClick(item)">
+
+                <div class="trade-item_count">x {{getItemAmount(item)}}</div>
+
+                <div
+                    *ngIf='item.category && item.category.acronym !== "N"'
+                    class="trade-item_class category"
+                    [ngStyle]="{ 'color': '#' + item?.category?.color }"
+                    title="{{item.category.fullName}}">
+                    {{item?.category.acronym}}
+                </div>
+
+                <div *ngIf='item.exterior'
+                     class="trade-item_class exterior"
+                     [ngStyle]="{ 'color': '#' + item?.exterior?.color }"
+                     title="{{item.exterior.fullName}}">
+                    {{item?.exterior.acronym}}
+                </div>
+
+                <ul *ngIf="item.stickers" class="item-sticker-list">
+                    <li *ngFor="let sticker of item.stickers" class="item-sticker-element">
+                        <img class="item-sticker-img" src="{{sticker}}" alt="">
+                    </li>
+                </ul>
+
+                <div class="trade-item-picture">
+                    <img class='trade-item-img' src="http://steamcommunity-a.akamaihd.net/economy/image/{{item?.icon_url}}" alt="">
+                </div>
+                <div class="trade-item-price" *ngIf="!item.unavailable">{{item?.price}} <span *ngIf="item?.price">$</span></div>
+            </div>
+        </div>
+
+    </div>
+</div>

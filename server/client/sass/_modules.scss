@@ -1,0 +1,9 @@
+.list-horizontal {
+  & > li {
+    display: inline-block;
+  }
+}
+
+.img-circle {
+  border-radius: 50%;
+}

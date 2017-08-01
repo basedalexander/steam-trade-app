@@ -1,0 +1,102 @@
+<%
+var DEFAULT_AVATAR_URL = 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg'
+%>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <base href="/">
+
+    <link rel="icon" href="static/img/favicon.ico">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trade application</title>
+    <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="static/js/socket.io.min.js"></script>
+
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function(err){ console.error(err); });
+    </script>
+</head>
+<body>
+<header class="main-header">
+    <nav class="main-navigation">
+        <div class="logo">
+            <a class='nav-link nav-item' ref="/">CSTRADE.COM</a>
+        </div>
+
+        <div class="user-block">
+
+            <% if (user) { %>
+            <div class="user-logged">
+                <div class="user-nickname">
+                    <span class="user-nickname__text nav-item"><%= user.displayName %></span>
+                </div>
+
+                <div class='user-avatar'>
+                    <img src="<%= user.photos[1].value  || DEFAULT_AVATAR_URL%>" alt="<%= user.displayName%>" class="user-avatar-img img-circle">
+                </div>
+            </div>
+
+            <% } else { %>
+
+            <div class="user-not-logged">
+                <a href="/auth/steam">
+                    <img src="static/img/signInBig.png" alt="sign-in-with-steam" class="sign-with-steam-img">
+                </a>
+            </div>
+            <% } %>
+
+            <% if (user) { %>
+            <div class="drop-nav">
+                <ul class="drop-nav_list">
+                    <li class="drop-nav_item">
+                        <a href='<%= 'http://steamcommunity.com/profiles/' + user.id %>' target='_blank' class='drop-nav__link nav-item' id='trade-link-modal-trigger'>My profile</a>
+                    </li>
+                    <li class="drop-nav_item">
+                        <a href='<%= 'http://steamcommunity.com/profiles/' + user.id + '/tradeoffers/' %>' target='_blank' class='drop-nav__link nav-item' id='trade-link-modal-trigger'>My trade offers</a>
+                    </li>
+                    <li class="drop-nav_item">
+                        <a class='drop-nav__link nav-item' id='trade-link-modal-trigger' onclick="openTradeUrlForm()">trade link</a>
+                    </li>
+                    <li class="drop-nav_item">
+                        <a class='drop-nav__link nav-item' href="auth/logout">logout</a>
+                    </li>
+                </ul>
+            </div>
+            <% } %>
+
+        </div>
+
+        <% if (bots) { %>
+        <div class="bots-block">
+
+            <span class="bots-block-text">bots</span>
+
+            <div class="drop-nav">
+                <ul class="drop-nav_list">
+
+                    <% bots.forEach(function(bot, index) { %>
+                    <li class="drop-nav_item">
+                        <a href='<%= 'http://steamcommunity.com/profiles/' + bot %>' target='_blank' class='drop-nav__link nav-item' id='trade-link-modal-trigger'>bot <%= index + 1%></a>
+                    </li>
+                    <% });%>
+                </ul>
+            </div>
+
+        </div>
+        <% } %>
+
+    </nav>
+</header>

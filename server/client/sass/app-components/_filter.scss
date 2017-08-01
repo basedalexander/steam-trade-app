@@ -1,0 +1,41 @@
+@import "../variables";
+
+inventory-filter {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.inventory-filter {
+  position: relative;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+}
+
+.filter {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  z-index: 5000;
+  visibility: hidden;
+  color: #fff;
+  background: rgba(31, 31, 31, .95);
+
+  text-transform: capitalize;
+
+  &.visible {
+    height: auto;
+    visibility: visible;
+  }
+}
+
+.filters {
+  padding: 20px;
+  color: $text-color-muted;
+}
+
+.filter-group-title {
+  margin-top: 0;
+}

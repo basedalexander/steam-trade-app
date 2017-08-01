@@ -1,0 +1,56 @@
+<section class="app-container">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <offer
+                        [items]="userOffer"
+                        (itemClick)="onUserItemUnselected($event)">
+                </offer>
+            </div>
+
+            <div class="col-md-2">
+                <div class="trade-control">
+                    <div class="trade-button_container">
+                        <a id='trade-button' class="trade-button theme-bg" [class.disabled]="!dealIsValid" (click)="handleDeal()">trade</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <offer
+                        [items]="appOffer"
+                        (itemClick)="onAppItemUnselected($event)">
+                </offer>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <inventory
+                        [inventoryProvider]="userInventoryProvider"
+                        [selectedItems]="userOffer"
+                        (itemClick)="onUserItemSelected($event)">
+                </inventory>
+            </div>
+
+            <div class="col-md-2">
+                <market-rates></market-rates>
+            </div>
+
+            <div class="col-md-5">
+                <inventory
+                        [inventoryProvider]="appInventoryProvider"
+                        [selectedItems]="appOffer"
+                        (itemClick)="onAppItemSelected($event)"
+                        (ownerSelect)="onBotSelect($event)">
+                </inventory>
+            </div>
+        </div>
+    </div>
+
+    <offer-progress (offerSent)="onOfferSent()"></offer-progress>
+    <trade-url-form *ngIf='urlFormVisible' (closed)="toggleUrlForm()"></trade-url-form>
+</section>

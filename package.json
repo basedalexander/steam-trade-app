@@ -1,0 +1,26 @@
+{
+  "name": "thohoh-steam-trade-app-9eb4520b1320",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "6.x.x"
+  },
+  "scripts": {
+    "postinstall": "cd client && npm i && cd ../server && npm i",
+    "compile-client": "./node_modules/.bin/tsc -p ./client",
+    "compile-server": "./node_modules/.bin/tsc -p ./server",
+    "start": "cd server && node bootstrap.js"
+  },
+  "repository": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "ts-node": "^1.7.0",
+    "typescript": "^2.0.10"
+  }
+}

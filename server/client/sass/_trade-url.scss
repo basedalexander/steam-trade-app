@@ -1,0 +1,44 @@
+@import "variables";
+
+.trade-url-block {
+  text-align: center;
+  padding: 20px;
+}
+
+.trade-url-block-tip {
+  margin-bottom: 25px;
+}
+
+.trade-url-link {
+  color: $text-color-primary;
+}
+
+.trade-offer-input-header {
+  margin-bottom: 7px;
+}
+
+.trade-url {
+  margin-bottom: 10px;
+}
+
+.trade-url-input {
+  width: 100%;
+  padding: 0 1%;
+  border: none;
+  border-radius: 2px;
+  color: $text-color-primary;
+
+  &.invalid {
+    box-shadow: #f00 0px 0px 5px 1px;
+  }
+}
+
+.trade-url-btn {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 5px 15px;
+  background: #1b2838;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #fff;
+}

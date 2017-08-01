@@ -1,0 +1,19 @@
+<div class="trade-window trade-window--small">
+
+    <header class="trade-window-header">
+        <div class="trade-window-header-item header-item--left">
+            <span class="trade-window-header-text">{{cost}} $</span>
+        </div>
+
+        <div class="trade-window-header-item header-item--right"><span class="trade-window-header-text">{{getItemsAmount()}} items</span></div>
+    </header>
+
+    <div class="trade-items-wrapper">
+        <items-list
+                [items]="items"
+                [hiddenItems]="[]"
+                [vsEnabled]="false"
+                (itemClick)="onItemClick($event)">
+        </items-list>
+    </div>
+</div> <!-- trade window ends -->

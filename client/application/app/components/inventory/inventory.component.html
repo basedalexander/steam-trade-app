@@ -1,0 +1,63 @@
+<div class="trade-window">
+    <header class="trade-window-header">
+        <!-- FILTERS -->
+        <div class="inventory-button-container header-item--left">
+            <a (click)="toggleFilter()" class="inventory-button filter-button" [class.active]="filterActive || filterIsVisible">filters</a>
+        </div>
+
+        <!-- BOT LIST -->
+        <div class="inventory-button-container header-item--left" *ngIf="owners">
+            <span class="inventory-button bot-list-selected">{{currentOwner?.name || 'all'}}</span>
+            <ul class="bot-list">
+                <li (click)="unselectOwner()" [class.current]="!currentOwner" class="bot-list-item">all</li>
+
+                <li *ngFor="let owner of owners; let i = index" (click)="selectOwner(owner, i)" [class.current]="currentOwner?.id === owner" class="bot-list-item">
+                    {{'bot' + (i + 1)}}
+                </li>
+            </ul>
+        </div>
+
+        <!-- ORDERING -->
+        <div class="inventory-button-container header-item--left">
+            <a (click)="toggleOrder()" class="inventory-button price-order-button">
+                price
+                <span *ngIf="highestPriceOnTop" class="order-arrow">▾</span>
+                <span *ngIf="!highestPriceOnTop" class="order-arrow">▴</span>
+            </a>
+        </div>
+
+        <!-- ITEMS COUNTER -->
+        <div class="inventory-button-container header-item--right"><span class="trade-window-header-text">{{itemsCount}} items</span></div>
+
+        <!-- SEARCH -->
+        <div class="inventory-button-container header-item--left inventory-search">
+            <input (keyup)="onSearchChanged(search.value)" class="inventory-search-input" #search type="text" placeholder="search item"/>
+        </div>
+
+        <!-- REFRESH BUTTON -->
+        <div class="header-item--left inventory-button-container refresh-button-container">
+            <a (click)='refresh()' class="inventory-button inventory-refresh-button">
+                <span class="fa fa-refresh"></span>
+            </a>
+        </div>
+
+    </header>
+
+    <inventory-filter
+            [visible]="filterIsVisible"
+            (filterChange)="onFilterChange($event)"
+            (mouseleave)="toggleFilter()">
+    </inventory-filter>
+
+    <div class="trade-items-wrapper">
+        <items-list
+                [items]="items"
+                [hiddenItems]="_selectedItems"
+                [vsEnabled]="true"
+                (itemClick)="onItemClick($event)">
+        </items-list>
+
+        <inventory-auth-screen *ngIf="authRequired"></inventory-auth-screen>
+        <load-indicator *ngIf="loading"></load-indicator>
+    </div>
+</div>

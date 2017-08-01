@@ -1,0 +1,10 @@
+{
+    "tradeOfferManager": {
+        "domain": "example.com",
+        "language": "en",
+        "pollInterval": 5000
+    },
+    "community": {
+        "confirmationCheckingInterval": 20000
+    }
+}

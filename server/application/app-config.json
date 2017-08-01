@@ -1,0 +1,17 @@
+{
+    "blacklistedItems": [
+        "StatTrak™ SSG 08 | Slashed (Field-Tested)",
+        "StatTrak™ M4A1-S | Guardian (Minimal Wear)"
+    ],
+    "overstockLimits": [
+        {
+            "name": "Gamma 2 Case Key",
+            "value": 250
+        },
+        {
+            "name": "Revolver Case Key",
+            "value": 100
+        }
+    ],
+    "lowestPrice": 0.04
+}

@@ -1,0 +1,19 @@
+{
+    "domain": "localhost",
+    "port": 3001,
+    "apiKey": "13A38CABC1499DDC4EC5E9B7B8697B57",
+    "viewsPath": "application/views",
+    "publicPath": "../client",
+    "adminClientPath": "../admin-client",
+    "session": {
+        "secret": "shh"
+    },
+    "mongoDB": {
+        "uri": "mongodb://steam-trade:4002746@ds033996.mlab.com:33996/steam-trade"
+    },
+    "redis": {
+        "host": "redis-11244.c10.us-east-1-2.ec2.cloud.redislabs.com",
+        "port": 11244
+    },
+    "botsWorkspace": "bots"
+}

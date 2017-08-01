@@ -1,0 +1,43 @@
+.bot-list-selected {
+    text-align: center;
+}
+.bot-list-selected:hover + .bot-list {
+    visibility: visible;
+}
+
+.bot-list {
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: auto;
+    text-align: center;
+    z-index: 1000;
+    background-color: #454545;
+}
+
+.bot-list:hover {
+    visibility: visible;
+}
+
+.bot-list-item {
+    cursor: pointer;
+    padding: 0 20px;
+    font-size: 90%;
+}
+.bot-list-item.current {
+    cursor: default;
+    background-color: rgba(31, 31, 31, 0.95);
+}
+
+.bot-list-item:hover {
+    background-color: rgba(31, 31, 31, 0.95);
+}
+
+.refresh-button-container {
+    margin-left: 1%;
+}
+
+.inventory-refresh-button {
+    font-size: 23px;
+}
